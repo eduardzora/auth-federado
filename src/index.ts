@@ -30,7 +30,7 @@ app.use(cookieParser());
 
 const redirectURI = "auth/google";
 
-function getGoogleAuthURL() {
+function getGoogleAuthURL():string {
   const rootUrl = "https://accounts.google.com/o/oauth2/v2/auth";
   const options = {
     redirect_uri: `${SERVER_ROOT_URI}/${redirectURI}`,
@@ -49,7 +49,8 @@ function getGoogleAuthURL() {
 
 // Getting login URL
 app.get("/auth/google/url", (req, res) => {
-  return res.send(getGoogleAuthURL());
+  let rFollow:string = getGoogleAuthURL();
+  res.redirect(rFollow);
 });
 
 function getTokens({
