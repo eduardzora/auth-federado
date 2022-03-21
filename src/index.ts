@@ -43,14 +43,13 @@ function getGoogleAuthURL():string {
       "https://www.googleapis.com/auth/userinfo.email",
     ].join(" "),
   };
-
   return `${rootUrl}?${querystring.stringify(options)}`;
 }
 
 // Getting login URL
-app.get("/auth/google/url", (req, res) => {
-  let rFollow:string = getGoogleAuthURL();
-  res.redirect(rFollow);
+app.get("/auth/google/url", async (req, res) => {
+  let rFollow:string = await getGoogleAuthURL();  
+  res.send({"url":rFollow}) 
 });
 
 function getTokens({
