@@ -50,6 +50,7 @@ function getGoogleAuthURL():string {
 app.get("/auth/google/url", async (req, res) => {
   let rFollow:string = await getGoogleAuthURL();  
   res.send({"url":rFollow}) 
+  //res.redirect(rFollow);
 });
 
 function getTokens({
@@ -126,7 +127,7 @@ app.get(`/${redirectURI}`, async (req, res) => {
 
   res.cookie(COOKIE_NAME, token, {
     maxAge: 900000,
-    httpOnly: true,
+    httpOnly: false,
     secure: false,
   });
 
